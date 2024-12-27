@@ -12,6 +12,7 @@ public class Main {
 
     public static void main(String[] args) {
         String[][] tasks = loadTasks();
+        System.out.println(ConsoleColors.BLUE + "Welcome to the task manager");
         displayMenu();
         Scanner scanner = new Scanner(System.in);
 
@@ -20,7 +21,7 @@ public class Main {
 
             switch (input) {
                 case "add":
-                    addTasks(tasks);
+                    tasks = addTasks(tasks);
                     break;
                 case "list":
                     listOfTasks(tasks);
@@ -34,6 +35,7 @@ public class Main {
                 default:
                     System.out.println(ConsoleColors.RED + "Please enter the correct option");
             }
+            displayMenu();
         }
 
     }
@@ -74,7 +76,6 @@ public class Main {
 
     public static void displayMenu() {
         String[] options = {"add", "list", "remove", "exit"};
-        System.out.println(ConsoleColors.BLUE + "Welcome to the task manager");
         System.out.println(ConsoleColors.BLUE + "Please select one of the following options" + ConsoleColors.RESET);
         for (String option : options) {
             System.out.println(option);
@@ -93,7 +94,7 @@ public class Main {
     }
 
 
-    public static void addTasks(String[][] tasks) {
+    public static String[][] addTasks(String[][] tasks) {
         Scanner scanner = new Scanner(System.in);
         System.out.println(ConsoleColors.GREEN + "Please enter the description of task" + ConsoleColors.RESET);
         String description = scanner.nextLine();
@@ -101,6 +102,12 @@ public class Main {
         String dueDate = scanner.nextLine();
         System.out.println(ConsoleColors.GREEN + "Is your task important? (true/false)" + ConsoleColors.RESET);
         String isImportant = scanner.nextLine();
+        tasks = Arrays.copyOf(tasks, tasks.length + 1);
+        tasks[tasks.length - 1] = new String[3];
+        tasks[tasks.length - 1][0] = description;
+        tasks[tasks.length - 1][1] = dueDate;
+        tasks[tasks.length - 1][2] = isImportant;
+        return tasks;
 
     }
 
