@@ -16,6 +16,7 @@ The goal of this project is to practice working with:
   - writing data to files,  
   - importing and using external libraries.  
 - The **Apache Commons Lang** library for easier manipulation of arrays and numerical data.
+- Project build in maven
 
 ## How to Run the Project
 
